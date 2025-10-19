@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glam up by Hania - Fashion & Beauty Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            direction: ltr;
+        }
+
+        .top-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        header {
+            background: #2d3748;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #2d3748;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 3px solid #ffd700;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-name {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffd700, #40e0d0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
+        }
+
+        .admin-panel {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .login-panel {
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .login-panel h2 {
+            margin-bottom: 20px;
+            color: #2d3748;
+        }
+
+        .login-panel input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #f56565 0%, #c53030 100%);
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            padding: 8px 16px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close:hover { color: #000; }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .product-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #48bb78;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .whatsapp-order-btn {
+            flex: 1;
+            background: #25D366;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-order-btn:hover {
+            background: #20ba5a;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-banner">
+        ⚡ FAST DELIVERY SERVICE ⚡
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="https://i.imgur.com/YourLogoURL.png" alt="Glam up by Hania Logo" onerror="this.parentElement.innerHTML='<div style=\'background: linear-gradient(135deg, #2d3748, #1a202c); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: #ffd700; font-size: 32px; font-weight: bold;\'>GH</div>'">
+                </div>
+                <div>
+                    <div class="brand-name">Glam up by Hania</div>
+                    <div style="font-size: 12px; color: #cbd5e0;">Your Fashion & Beauty Destination</div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    📧 haniacollection732@gmail.com
+                </div>
+                <div class="contact-item">
+                    📍 Sialkot
+                </div>
+                <a href="https://wa.me/923286271018" class="whatsapp-btn" target="_blank">
+                    📱 WhatsApp Order
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-panel" id="adminPanel" style="display: none;">
+        <div class="admin-header">
+            <h2>🛍 Product Management</h2>
+            <div>
+                <button class="btn" onclick="openAddModal()">➕ Add New Product</button>
+                <button class="logout-btn" onclick="logout()">🔒 Logout</button>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+
+    <div class="login-panel" id="loginPanel">
+        <h2>🔐 Admin Panel</h2>
+        <div id="loginForm">
+            <p style="color: #718096; margin-bottom: 20px;">Enter password to manage products</p>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password" onkeypress="if(event.key === 'Enter') login()">
+            <button class="btn" onclick="login()" style="width: 100%; margin-bottom: 15px;">🔓 Login</button>
+            <p style="color: #718096; font-size: 13px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0;">
+                📝 No password set yet? <a href="#" onclick="showSetupForm(); return false;" style="color: #667eea; font-weight: bold;">Set Admin Password</a>
+            </p>
+            <p id="loginError" style="color: #f56565; margin-top: 10px; display: none;">❌ Incorrect Password!</p>
+        </div>
+
+        <div id="setupForm" style="display: none;">
+            <p style="color: #718096; margin-bottom: 20px;">🔐 Set Your Admin Password</p>
+            <input type="password" id="newPassword" placeholder="Create a strong password" onkeypress="if(event.key === 'Enter') setPassword()">
+            <input type="password" id="confirmPassword" placeholder="Confirm password" onkeypress="if(event.key === 'Enter') setPassword()" style="margin-top: 10px;">
+            <button class="btn" onclick="setPassword()" style="width: 100%; margin-top: 15px;">✅ Set Password</button>
+            <button class="btn logout-btn" onclick="showSetupForm()" style="width: 100%; margin-top: 10px;">❌ Cancel</button>
+            <p id="setupError" style="color: #f56565; margin-top: 10px; display: none;"></p>
+            <p id="setupSuccess" style="color: #48bb78; margin-top: 10px; display: none;">✅ Password set successfully! Please login.</p>
+        </div>
+    </div>
+
+    <div class="admin-panel" style="text-align: center; padding: 40px;">
+        <h2 style="color: #2d3748; margin-bottom: 20px;">🛍 Our Products</h2>
+        <p style="color: #718096; margin-bottom: 30px;">Browse our amazing collection and order via WhatsApp!</p>
+        <div class="products-grid" id="publicProductsGrid"></div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Add New Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                
+                <div class="form-group">
+                    <label>Product Name *</label>
+                    <input type="text" id="productName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category *</label>
+                    <select id="productCategory" required>
+                        <option value="">Select Category</option>
+                        <option value="Ladies Dress">Ladies Dress</option>
+                        <option value="Men Dress">Men Dress</option>
+                        <option value="Watches">Watches</option>
+                        <option value="Ladies Makeup">Ladies Makeup</option>
+                        <option value="Girls Bags">Girls Bags</option>
+                        <option value="Shoes">Shoes</option>
+                        <option value="Ladies Trousers">Ladies Trousers</option>
+                        <option value="Ladies Undergarments">Ladies Undergarments</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (PKR) *</label>
+                    <input type="number" id="productPrice" required min="0">
+                </div>
+
+                <div class="form-group">
+                    <label>Image URL *</label>
+                    <input type="url" id="productImage" placeholder="https://example.com/image.jpg" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="productDescription" rows="4" placeholder="Product details..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">💾 Save Product</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <span>📧 haniacollection732@gmail.com</span>
+                <span>📱 +92 328 6271018</span>
+                <span>📍 Sialkot, Pakistan</span>
+            </div>
+            <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #4a5568;">
+                <p>© 2024 Glam up by Hania. All Rights Reserved.</p>
+                <p style="font-size: 12px; margin-top: 8px; color: #a0aec0;">Fast Delivery Service Available</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let products = [];
+        let editingId = null;
+        let isAdminLoggedIn = false;
+        const ADMIN_PASSWORD_KEY = "glamUpAdminPassword";
+        
+        // Get stored password or null
+        function getAdminPassword() {
+            return localStorage.getItem(ADMIN_PASSWORD_KEY) || null;
+        }
+        
+        // Set new password
+        function setAdminPassword(password) {
+            localStorage.setItem(ADMIN_PASSWORD_KEY, password);
+        }
+
+        function initProducts() {
+            products = [
+                {
+                    id: 1,
+                    name: "Elegant Party Dress",
+                    category: "Ladies Dress",
+                    price: 3500,
+                    image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400",
+                    description: "Beautiful party wear dress for special occasions"
+                },
+                {
+                    id: 2,
+                    name: "Premium Men's Kurta",
+                    category: "Men Dress",
+                    price: 2800,
+                    image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400",
+                    description: "Stylish kurta for men, perfect for formal events"
+                },
+                {
+                    id: 3,
+                    name: "Luxury Watch",
+                    category: "Watches",
+                    price: 4500,
+                    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
+                    description: "Elegant watch with premium quality"
+                },
+                {
+                    id: 4,
+                    name: "Makeup Kit",
+                    category: "Ladies Makeup",
+                    price: 1800,
+                    image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400",
+                    description: "Complete makeup collection for all occasions"
+                }
+            ];
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productsGrid');
+            const publicGrid = document.getElementById('publicProductsGrid');
+            
+            const productsHTML = products.length === 0 
+                ? '<p style="text-align: center; color: #718096; grid-column: 1/-1;">No products available. Add your first product!</p>'
+                : products.map(product => `
+                    <div class="product-card">
+                        <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='https://via.placeholder.com/400x300?text=No+Image'">
+                        <div class="product-info">
+                            <div class="product-category">${product.category}</div>
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-price">Rs. ${product.price.toLocaleString()}</div>
+                            <div class="product-description">${product.description || 'No description available'}</div>
+                            <a href="https://wa.me/923286271018?text=Hi! I want to order: ${encodeURIComponent(product.name)} - Rs. ${product.price}" 
+                               class="whatsapp-order-btn" target="_blank">
+                                📱 Order on WhatsApp
+                            </a>
+                            ${isAdminLoggedIn ? `
+                            <div class="product-actions">
+                                <button class="btn btn-edit" onclick="editProduct(${product.id})">✏ Edit</button>
+                                <button class="btn btn-delete" onclick="deleteProduct(${product.id})">🗑 Delete</button>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `).join('');
+
+            if (grid) grid.innerHTML = productsHTML;
+            if (publicGrid) publicGrid.innerHTML = productsHTML;
+        }
+
+        function login() {
+            const password = document.getElementById('adminPassword').value;
+            const errorMsg = document.getElementById('loginError');
+            const storedPassword = getAdminPassword();
+            
+            if (!storedPassword) {
+                errorMsg.textContent = '❌ No password set yet! Please set a password first.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            if (password === storedPassword) {
+                isAdminLoggedIn = true;
+                document.getElementById('loginPanel').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                renderProducts();
+            } else {
+                errorMsg.textContent = '❌ Incorrect Password!';
+                errorMsg.style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+            }
+        }
+
+        function showSetupForm() {
+            const setupForm = document.getElementById('setupForm');
+            const loginForm = document.getElementById('loginForm');
+            
+            if (setupForm.style.display === 'none') {
+                setupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else {
+                setupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+                document.getElementById('setupError').style.display = 'none';
+                document.getElementById('setupSuccess').style.display = 'none';
+                document.getElementById('newPassword').value = '';
+                document.getElementById('confirmPassword').value = '';
+            }
+        }
+
+        function setPassword() {
+            const newPass = document.getElementById('newPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+            const errorMsg = document.getElementById('setupError');
+            const successMsg = document.getElementById('setupSuccess');
+            
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+            
+            if (!newPass || !confirmPass) {
+                errorMsg.textContent = '❌ Please fill in all fields';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            if (newPass.length < 4) {
+                errorMsg.textContent = '❌ Password must be at least 4 characters';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            if (newPass !== confirmPass) {
+                errorMsg.textContent = '❌ Passwords do not match!';
+                errorMsg.style.display = 'block';
+                return;
+            }
+            
+            setAdminPassword(newPass);
+            successMsg.textContent = '✅ Password set successfully! Please login now.';
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                showSetupForm();
+                document.getElementById('adminPassword').focus();
+            }, 1500);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                isAdminLoggedIn = false;
+                document.getElementById('adminPanel').style.display = 'none';
+                document.getElementById('loginPanel').style.display = 'block';
+                document.getElementById('adminPassword').value = '';
+                document.getElementById('loginError').style.display = 'none';
+            }
+        }
+
+        function openAddModal() {
+            if (!isAdminLoggedIn) {
+                alert('Please login first!');
+                return;
+            }
+            editingId = null;
+            document.getElementById('modalTitle').textContent = 'Add New Product';
+            document.getElementById('productForm').reset();
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        function editProduct(id) {
+            if (!isAdminLoggedIn) {
+                alert('Please login first!');
+                return;
+            }
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+
+            editingId = id;
+            document.getElementById('modalTitle').textContent = 'Edit Product';
+            document.getElementById('productId').value = id;
+            document.getElementById('productName').value = product.name;
+            document.getElementById('productCategory').value = product.category;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productImage').value = product.image;
+            document.getElementById('productDescription').value = product.description || '';
+            document.getElementById('productModal').style.display = 'block';
+        }
+
+        function deleteProduct(id) {
+            if (!isAdminLoggedIn) {
+                alert('Please login first!');
+                return;
+            }
+            if (confirm('Are you sure you want to delete this product?')) {
+                products = products.filter(p => p.id !== id);
+                renderProducts();
+            }
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const productData = {
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                price: parseFloat(document.getElementById('productPrice').value),
+                image: document.getElementById('productImage').value,
+                description: document.getElementById('productDescription').value
+            };
+
+            if (editingId) {
+                const index = products.findIndex(p => p.id === editingId);
+                products[index] = { ...products[index], ...productData };
+            } else {
+                const newProduct = {
+                    id: Date.now(),
+                    ...productData
+                };
+                products.push(newProduct);
+            }
+
+            renderProducts();
+            closeModal();
+        });
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        initProducts();
+    </script>
+</body>
+</html>
